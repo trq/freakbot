@@ -21,9 +21,12 @@ otherRules = [
 
 module.exports = (robot) ->
   robot.respond /(what are )?the (three |3 )?(rules|laws)/i, (msg) ->
-    text = msg.message.text
-    if text.match(/apple/i) or text.match(/dev/i)
-      msg.send otherRules.join('\n')
+    if robot.auth.hasRole(msg.envelope.user,'admin')
+      text = msg.message.text
+      if text.match(/apple/i) or text.match(/dev/i)
+        msg.send otherRules.join('\n')
+      else
+        msg.send rules.join('\n')
     else
-      msg.send rules.join('\n')
+        msg.send "Only an admin can know the rules"
 
