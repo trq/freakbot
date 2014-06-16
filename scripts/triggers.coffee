@@ -8,10 +8,11 @@ triggers =
   # Question Assistance
   '!dataja'       : "Don't ask to ask, Just ask!"
   '!tryit'        : "Try it and see™. You learn much more by experimentation than by asking without having even tried."
-  '!question'      : "Before asking for help, use http://forums.phpfreaks.com to provide us with all the relevant code and a good description of your issue. Paste the link here when done. Thanks!"
+  '!issue'        : "Before asking for help, use http://forums.phpfreaks.com to provide us with all the relevant code and a good description of your issue. Paste the link here when done. Thanks!"
   '!paste'        : "Please post your code on https://gist.github.com and paste the link here."
   '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads. Please use https://gist.github.com.au. Thanks!"
   '!help'         : "See http://phpfreaks.com/page/irc-live-chat for help using our irc channel."
+  '!triggers'     : "To see what triggers are available visit https://github.com/trq/freakbot/blob/master/scripts/triggers.coffee"
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
