@@ -1,3 +1,7 @@
 [
-    "lmgtfy.coffee"
+    "auth.coffee",
+    "availability.coffee",
+    "lmgtfy.coffee",
+    "phpdoc.coffee",
+    "roles.coffee"
 ]
