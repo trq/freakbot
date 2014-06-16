@@ -3,6 +3,5 @@
     "availability.coffee",
     "lmgtfy.coffee",
     "phpdoc.coffee",
-    "redis-brain.coffee",
-    "roles.coffee"
+    "redis-brain.coffee"
 ]
