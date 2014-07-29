@@ -1,7 +1,7 @@
 [
     "auth.coffee",
     "availability.coffee",
+    "github-search.coffee",
     "lmgtfy.coffee",
-    "phpdoc.coffee",
     "redis-brain.coffee"
 ]
