@@ -1,11 +1,8 @@
 # Description:
-#   LioBot gets you tip top information from the Laravel or PHP documentation
+#   FooBot gets you tip top information from the PHP documentation
 #
 # Commands:
-#   <nick?> !docs <version?> <query> - Perform a Google search against Laravel or PHP
-#       docs for <query>, version can be a numeric version number, 'api' to
-#       search the api docs, 'php' to search the PHP docs, or blank for
-#       the latest Laravel docs pages.
+#   <nick?> !docs <query> - Perform a Google search against PHP docs
 #
 # Notes:
 #   None
@@ -16,26 +13,10 @@ htmlStrip = require 'htmlstrip-native'
 TARGET_VERSION = '4.2'
 SEARCH_URL = 'https://www.google.com/search'
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'
-#Rommie=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17
 
 module.exports = (robot) ->
-  getQueryUrl = (doctype, version, query) ->
-    version = 3 if version?.match /^3(.*)/i
-
-    if doctype == 'api'
-      if version == 3
-        "site:l3.shihan.me/api #{query}"
-      else if version?
-        "site:laravel.com/api/#{version} #{query}"
-      else
-        "site:laravel.com/api/#{TARGET_VERSION} #{query}"
-    else if doctype == 'php'
+  getQueryUrl = (query) ->
       "site:php.net/manual/en #{query}"
-    else
-      if version == 3
-        "site:three.laravel.com/docs #{query}"
-      else
-        "site:laravel.com/docs #{query}"
 
   fetchResult = (query, callback) ->
     robot.http(SEARCH_URL)
@@ -49,15 +30,15 @@ module.exports = (robot) ->
         callback url if callback
 
   docFetcher = (msg) ->
-    [user, doctype, version, query] = msg.match[1..4]
+    [user, query] = msg.match[1..2]
 
-    fetchResult getQueryUrl(doctype, version, query), (url) ->
+    fetchResult getQueryUrl(query), (url) ->
       return msg.send "No results for \"#{query.substr(0,30)}\"" unless url
 
       response = url
       response = "#{user}: #{response}" if user
 
-      if doctype == 'php' and /function/.test url
+      if /function/.test url
         robot.http(url).get() (err, res, body) ->
           $ = cheerio.load body
           methodSigContent = htmlStrip.html_strip $('.methodsynopsis').html(), compact_whitespace : true
@@ -65,5 +46,5 @@ module.exports = (robot) ->
       else
         msg.send response
 
-  robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php) )?(?:([0-9.]+) )?(.+)/i, docFetcher
-  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs(?: (api|php))?(?: ([0-9.]+))?(?:\s?(.+))/i, docFetcher
+  robot.respond /show (?:([^\s!]+) )?docs for (.+)/i, docFetcher
+  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs (?:\s?(.+))/i, docFetcher
