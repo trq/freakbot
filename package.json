@@ -26,7 +26,8 @@
     "hubot-irc": "~0.2.2",
     "cheerio": "~0.17.0",
     "coffee-script": "~1.7.1",
-    "githubot": "~1.0.0-beta2"
+    "githubot": "~1.0.0-beta2",
+    "htmlstrip-native": "0.0.2"
   },
   "engines": {
     "node": ">= 0.8.x",
