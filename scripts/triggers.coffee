@@ -19,6 +19,8 @@ triggers =
   '!nick'         : "Hello! You're currently using a nick that's difficult to distinguish. Please type in \"/nick your_name\" so we can easily identify you"
   '!welcome'      : "Hello, I'm #{process.env.HUBOT_IRC_NICK}, the PHPFreaks IRC Bot!  Welcome to #help :).  If you have any questions, type !help to see how to best ask for assistance.  If you need to paste code, check !paste for more info.  Thanks!"
   '!whoisfoobot'  : "Hello! The PHPFreaks team created me to help you! You can find my code at https://github.com/trq/freakbot"
+  '!tableflip'    : "(╯°□°)╯︵ ┻━┻"
+  '!dunno'        : " ¯\\_(ツ)_/¯"
 
 module.exports = (robot) ->
   robot.hear /(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
